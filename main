@@ -1,0 +1,4 @@
+function mailFilterDelete() {
+  const numberOfThreads = [INSERT NUMBER OF THREADS TO BE FILTERED] ;
+  emailFilterDelete([[INSERT EMAIL/S HERE]],numberOfThreads)
+}
