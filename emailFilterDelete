@@ -1,0 +1,17 @@
+function emailFilterDelete(emails, maxThreadCount) {
+  for (var e = 0; e < emails.length; e++) {
+    var threads = GmailApp.search('is:inbox from:' + emails[e], 0, maxThreadCount);
+    for (var t = 0; t < threads.length; t++) {
+      var messages = threads[t].getMessages();
+      var message = messages[0];
+      var from = message.getFrom();
+      var subject = message.getSubject();
+      var name = from.split('<')[0].trim();
+      var email = from.match(/<(.+)>/)[1];
+      Logger.log('Sender name: ' + name);
+      Logger.log('Sender email: ' + email);
+      Logger.log('Subject: ' + subject);
+      threads[t].moveToTrash();
+    }
+  }
+}
