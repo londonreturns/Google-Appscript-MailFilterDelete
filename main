@@ -1,4 +1,6 @@
 function mailFilterDelete() {
   const numberOfThreads = [INSERT NUMBER OF THREADS TO BE FILTERED] ;
-  emailFilterDelete([[INSERT EMAIL/S HERE]],numberOfThreads)
+  var tempThreads = GmailApp.getInboxThreads();
+  emailFilterDelete([[INSERT EMAIL/S HERE]], numberOfThreads, tempThreads)
+  senderNameFilterDelete([[SENDER NAME/S HERE]], numberOfThreads, tempThreads)
 }
