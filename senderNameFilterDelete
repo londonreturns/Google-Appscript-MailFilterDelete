@@ -1,0 +1,37 @@
+function subjectFilterLabelArchive(keywords, maxThreads, threads) {
+  found = false;
+  // Loop through each thread
+  for (var i = 0; i < Math.min(threads.length, maxThreads); i++) {
+    var thread = threads[i];
+    var messages = thread.getMessages();
+
+    for (var j = 0; j < messages.length; j++) {
+      var message = messages[j];
+      var sender = message.getFrom();
+      var subject = message.getSubject();
+
+      // Loop through each keyword
+      for (var k = 0; k < keywords.length; k++) {
+        // Check if the subject contains the current keyword
+        if (subject.toLowerCase().indexOf(keywords[k].toLowerCase()) !== -1) {
+          Logger.log("Sender: " + sender);
+          Logger.log("Subject: " + subject);
+          Logger.log("Keyword: " + keywords[k]);
+
+          found = true
+
+          threads[k].moveToTrash();
+
+          if (found){
+            break
+          }
+
+          break;
+        }
+      }
+      if (found){
+            break
+          }
+    }
+  }
+}
